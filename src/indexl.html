@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Carousel</title>
+    <link href="ddcarousel.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <main>
+      <section>
+        <div class="ddcarousel_wrapper">
+            <div id="carousel" class="ddcarousel">
+                <img class="ddcarousel_item" src="assets/bear.jpg" alt="bear" />
+                <img class="ddcarousel_item" src="assets/cat.jpg" alt="cat" />
+                <img class="ddcarousel_item" src="assets/lion.jpg" alt="lion" />
+                <img class="ddcarousel_item" src="assets/fox.jpg" alt="fox" />
+                <img class="ddcarousel_item" src="assets/leopard.jpg" alt="leopard" />
+                <img class="ddcarousel_item" src="assets/monkey.jpg" alt="monkey" />
+                <img class="ddcarousel_item" src="assets/zebra.jpg" alt="zebra" />
+                <img class="ddcarousel_item" src="assets/platypus.jpg" alt="platypus" />
+                <img class="ddcarousel_item" src="assets/emu.jpg" alt="emu" />
+            </div>
+            <div class="ddcarousel_nav_item prev" aria-role="button" data-dir="prev">&#8249;</div>
+            <div class="ddcarousel_nav_item next" aria-role="button" data-dir="next">&#8250;</div>
+            <div class="ddcarousel_nav">
+              <div class="pagination-numbers"></div>
+            </div>
+        </div>
+      </section>
+      <section>
+        <p>
+          The sample carousel should be put in the section tag as below example. For multiple carousels, the new section should be added together with its html tags underneath.
+          The css classes are used in the script. Hence, they are should not changed for properly working.          
+        </p>
+        <p>
+          Once new section tag and its container created, the id of <code>&lt;div class="carousel"&gt;</code> should be changed (e.g "carousel1") and should be declared in the ddcarousel.js file (refer to the last 2 lines) for using.
+          <br>
+          <code>const  el = document.getElementById("carousel");</code><br>
+          <code>new DDCarousel(el);</code>
+        </p>
+        <p>
+          This sample using media query to detect 3 common size: mobile (600), tablet (768) and desktop (1024). The section html tag will change the width accordingly based on screen size.
+          However, user need to refresh the screen to get the effect as it require to re-render DOM element.
+        </p>
+      </section>
+    </main>
+    <script src="ddcarousel.js"></script>
+  </body>
+</html>

@@ -1,0 +1,188 @@
+html {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+	-webkit-box-sizing: inherit;
+	-moz-box-sizing: inherit;
+	box-sizing: inherit;
+}
+
+* {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+	line-height: 1.6;
+	color: #4a4a4a;
+	font-family: sans-serif;
+	background: #faefee;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+main {
+	padding: 4rem 0;
+}
+
+section {
+    width: 800px;
+    margin: 0 auto;
+}
+
+/* Carousel start */
+
+.ddcarousel_wrapper {
+    display: grid;
+    grid-template-rows: 1fr max-content;
+    position: relative;
+    background-color: #eee;
+    padding: 1rem;
+    height: 14rem;
+}
+
+.ddcarousel {
+    position: relative;
+    overflow: clip;
+    left: 10px;
+}
+
+.ddcarousel_item {
+    position: absolute;
+    background: #eee;
+    top:0 ;
+    transition: all ease-in-out 800ms;
+    max-width: 100%;
+    height: 9rem;
+}
+
+.ddcarousel_item {
+    animation: show 400ms 100ms cubic-bezier(0.38, 0.97, 0.56, 0.76) forwards;
+    opacity: 0;
+    transform: rotateX(-90deg);
+    transform-origin: left center;
+  }
+  
+@keyframes show {
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.ddcarousel_nav {
+    display: flex;
+    justify-content: center;
+}
+
+.ddcarousel_nav_item {
+    position: absolute;
+    display: flex;
+    top: 0;
+    bottom: 0;
+    padding: 0;
+    margin: auto;
+    width: 1rem;
+    height: 1rem;
+    line-height: 0.7rem;
+    font-size: 1.5rem;
+    background-color: black;
+    border: none;
+    cursor: pointer;
+    opacity: 0.5;
+    color: white;
+    transition: opacity 100ms;
+}
+
+.prev {
+    left: 0;
+    padding-left: 0.25rem;
+    border-radius: 2rem;
+}
+
+.next {
+    right: 0;
+    padding-left: 0.3rem;
+    border-radius: 2rem;
+}
+
+.pagination-numbers {
+    display: flex;
+}
+
+
+/* Pagination start */
+.pagination-number {
+    margin: 0.25rem 0.5rem;
+    cursor: pointer;
+    height: 0.4rem;
+    width: 0.4rem;
+    border-radius: 100%;
+    background-color: black;
+}
+
+.pagination-number:hover {
+  background: #fff;
+}
+
+.pagination-number.active {
+  color: #fff;
+  background: #adadad;
+}
+/* Pagination end */
+
+
+
+@media only screen and (max-width: 600px) {
+    section {
+        width: 300px;
+    }
+
+    .ddcarousel_wrapper {
+      height: 7rem;
+    }
+
+    .ddcarousel_item {
+        height: 4rem;;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    section {
+        width: 600px;
+    }
+
+    .ddcarousel_wrapper {
+      height: 10rem;
+    }
+
+    .ddcarousel_item {
+        height: 6rem;;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    section {
+        width: 800px;
+    }
+
+    .ddcarousel_wrapper {
+      height: 14rem;
+    }
+
+    .ddcarousel_item {
+        height: 9rem;;
+    }
+}
