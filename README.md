@@ -1,4 +1,4 @@
-# ddcarousel
+# ddcarousel by Daniel
 <section>
         <p>
           The sample carousel should be put in the section tag as below example. For multiple carousels, the new section should be added together with its html tags underneath.
