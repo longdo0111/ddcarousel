@@ -1,6 +1,6 @@
 class DDCarousel {
     version = 0.1;
-    el = null; // element housing the carousel
+    element = null; // element housing the carousel
     originalItems = [] //array of carousel item for pagination
     items = []; //array of carousel item
     size = 3; //number of item per page
@@ -11,20 +11,20 @@ class DDCarousel {
     touchStartX = 0;
     touchEndX = 0;
 
-    constructor(el) {
-        this.el = el;
-        this.items = el.getElementsByClassName("ddcarousel_item");
+    constructor(_element) {
+        this.element = _element;
+        this.items = _element.getElementsByClassName("ddcarousel_item");
         this.originalItems = Object.assign([], this.items);
         
         //set listener for navigation to left/right
-        const navigationLeftRight = this.el.parentElement.getElementsByClassName("ddcarousel_nav_item");
+        const navigationLeftRight = this.element.parentElement.getElementsByClassName("ddcarousel_nav_item");
         for(let i = 0; i < navigationLeftRight.length; i++) {
             navigationLeftRight[i].addEventListener("click", () => this.move(navigationLeftRight[i]));
         }
 
         //set listener for touch event on mobile
-        this.el.addEventListener('touchstart', (event) => this.handleTouchStart(event));
-        this.el.addEventListener('touchend', (event) => this.handleTouchEnd(event, this));
+        this.element.addEventListener('touchstart', (event) => this.handleTouchStart(event));
+        this.element.addEventListener('touchend', (event) => this.handleTouchEnd(event, this));
         this.init();
     }
 
@@ -32,12 +32,12 @@ class DDCarousel {
         await this.setMinItems();//set minimum item to (size + 2), max size is 3 and other 2 for previous and next item
         this.width = await this.getSize();
         // this.el.style.height = this.items[0].clientHeight + "px";
-        this.el.style.height = "auto";
+        this.element.style.height = "auto";
         
         await this.buildPagination();//build-up the pagination item
 
-        await this.clone("prev");//to set the first item display
-        await this.build();
+        await this.clone("previous");//to set the first item display
+        await this.buildPosition();
     }
 
     async setMinItems() {
@@ -46,7 +46,7 @@ class DDCarousel {
             let itemsLength = this.items.length;
             for(let i = 0; i < itemsLength; i++) {
                 let carousel = this.items[i].cloneNode(true);
-                this.el.append(carousel);
+                this.element.append(carousel);
             }
         }
         if(this.items.length < minItems) {
@@ -56,13 +56,13 @@ class DDCarousel {
     }
 
     async getSize() {
-        let width = this.el.clientWidth;
+        let width = this.element.clientWidth;
         width = width / this.size - this.gap;
         return width;
     }
 
     //Present the carousel and re-render after moving to next/previous carousel
-    async build() {
+    async buildPosition() {
         let left = this.width * -1;
         for(let i = 0; i < this.items.length; i++) {
             this.items[i].style.width = this.width + "px";
@@ -80,7 +80,7 @@ class DDCarousel {
         await this.getPaginationNumbers(pageCount);//set number of pagination item
         await this.setCurrentPage(1);//set active for the first page as default
         
-        const pagination = this.el.parentElement.getElementsByClassName("pagination-number");
+        const pagination = this.element.parentElement.getElementsByClassName("pagination-number");
         
         //set listener for pagination item
         for(let i = 0; i < pagination.length; i++) {
@@ -115,7 +115,7 @@ class DDCarousel {
 
     //get the container housing and append the pagination items to the container
     async getPaginationNumbers(pageCount) {
-        const paginationNumbers = this.el.parentElement.getElementsByClassName("pagination-numbers");
+        const paginationNumbers = this.element.parentElement.getElementsByClassName("pagination-numbers");
         let pageNav = null;
         for (let i = 1; i <= pageCount; i++) {
             pageNav = this.appendPageNav(i);
@@ -141,9 +141,9 @@ class DDCarousel {
         let carousel = item.cloneNode(true);
 
         if(position === "next") {
-            this.el.append(carousel);
+            this.element.append(carousel);
         } else {
-            this.el.prepend(carousel);
+            this.element.prepend(carousel);
         }
 
         item.remove();
@@ -155,7 +155,7 @@ class DDCarousel {
         if(position === "next") {
             this.next();
         } else {
-            this.prev();
+            this.previous();
         }
     }
 
@@ -174,22 +174,22 @@ class DDCarousel {
             this.items[i].remove();
         }
         for(let i = 0; i < this.originalItems.length; i++) {
-            this.el.append(this.originalItems[i].cloneNode(true));
+            this.element.append(this.originalItems[i].cloneNode(true));
         }
-        await this.clone("prev");
-        await this.build();
+        await this.clone("previous");
+        await this.buildPosition();
     }
 
     //moving to the next carousel item
     async next() {
         await this.clone("next");
-        await this.build();
+        await this.buildPosition();
     }
 
     //moving to the previous carousel item
-    async prev() {
+    async previous() {
         await this.clone("pev");
-        await this.build();
+        await this.buildPosition();
     }
 
     //Handle touch event on mobile    
@@ -215,5 +215,6 @@ class DDCarousel {
     
 }
 
-const  el = document.getElementById("carousel");
-new DDCarousel(el);
+
+const element = document.getElementById("carousel");
+new DDCarousel(element);
