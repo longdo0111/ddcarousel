@@ -1,4 +1,4 @@
-class DDCarouselInfinite {
+class DDCarouselStatic {
     version = 0.1;
     element = null; // element housing the carousel
     originalItems = [] //array of carousel item for pagination
@@ -13,11 +13,11 @@ class DDCarouselInfinite {
 
     constructor(_element) {
         this.element = _element;
-        this.items = _element.getElementsByClassName("ddcarousel_item");
+        this.items = _element.getElementsByClassName("ddcarousel_item_fix_position");
         this.originalItems = Object.assign([], this.items);
         
         //set listener for navigation to left/right
-        const navigationLeftRight = this.element.parentElement.getElementsByClassName("ddcarousel_nav_item");
+        const navigationLeftRight = this.element.parentElement.getElementsByClassName("ddcarousel_nav_item_fix_position");
         for(let i = 0; i < navigationLeftRight.length; i++) {
             navigationLeftRight[i].addEventListener("click", () => this.move(navigationLeftRight[i]));
         }
@@ -216,5 +216,5 @@ class DDCarouselInfinite {
 }
 
 
-const element = document.getElementById("carousel");
-new DDCarouselInfinite(element);
+const element = document.getElementById("carouselStatic");
+new DDCarouselStatic(element);

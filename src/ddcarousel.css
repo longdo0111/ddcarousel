@@ -53,10 +53,33 @@ section {
     height: 14rem;
 }
 
+.ddcarousel_wrapper_fix_position {
+    display: grid;
+    grid-template-rows: 1fr max-content;
+    position: relative;
+    background-color: #eee;
+    padding: 1rem;
+    height: 14rem;
+}
+
 .ddcarousel {
     position: relative;
     overflow: clip;
     left: 10px;
+}
+
+.ddcarousel-fix-position {
+    position: relative;
+    overflow: clip;
+    display: flex;
+    gap: 10px;
+}
+
+.ddcarousel_item_fix_position {
+    position: relative;
+    background: #eee;
+    transition: all ease-in-out 800ms;
+    height: 9rem;
 }
 
 .ddcarousel_item {
@@ -82,12 +105,12 @@ section {
     }
 }
 
-.ddcarousel_nav {
+.ddcarousel_nav, .ddcarousel_nav_fix_position  {
     display: flex;
     justify-content: center;
 }
 
-.ddcarousel_nav_item {
+.ddcarousel_nav_item, .ddcarousel_nav_item_fix_position {
     position: absolute;
     display: flex;
     top: 0;
@@ -118,13 +141,13 @@ section {
     border-radius: 2rem;
 }
 
-.pagination-numbers {
+.pagination-numbers, .pagination-numbers-fix-position {
     display: flex;
 }
 
 
 /* Pagination start */
-.pagination-number {
+.pagination-number, .pagination-numbers-fix-position {
     margin: 0.25rem 0.5rem;
     cursor: pointer;
     height: 0.4rem;
@@ -133,7 +156,7 @@ section {
     background-color: black;
 }
 
-.pagination-number:hover {
+.pagination-number:hover, .pagination-numbers-fix-position:hover {
   background: #fff;
 }
 
@@ -150,11 +173,11 @@ section {
         width: 300px;
     }
 
-    .ddcarousel_wrapper {
+    .ddcarousel_wrapper, .ddcarousel_wrapper_fix_position {
       height: 7rem;
     }
 
-    .ddcarousel_item {
+    .ddcarousel_item, .ddcarousel_item_fix_position {
         height: 4rem;;
     }
 }
@@ -164,11 +187,11 @@ section {
         width: 600px;
     }
 
-    .ddcarousel_wrapper {
+    .ddcarousel_wrapper, .ddcarousel_wrapper_fix_position {
       height: 10rem;
     }
 
-    .ddcarousel_item {
+    .ddcarousel_item, .ddcarousel_item_fix_position {
         height: 6rem;;
     }
 }
@@ -178,11 +201,11 @@ section {
         width: 800px;
     }
 
-    .ddcarousel_wrapper {
+    .ddcarousel_wrapper, .ddcarousel_wrapper_fix_position {
       height: 14rem;
     }
 
-    .ddcarousel_item {
+    .ddcarousel_item, .ddcarousel_item_fix_position {
         height: 9rem;;
     }
 }
